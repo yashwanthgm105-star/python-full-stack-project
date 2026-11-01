@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ job.title }} | SmartJobs</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fc;
+            color: #172033;
+        }
+
+        header {
+            background: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 12px #0000000a;
+        }
+
+        .logo {
+            color: #2563eb;
+            font-size: 27px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        header nav a {
+            color: #334155;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero {
+            background: linear-gradient(120deg, #102044, #2563eb);
+            color: white;
+            padding: 42px 8%;
+        }
+
+        .hero p {
+            color: #dbeafe;
+            line-height: 1.7;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin: 12px 0;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 35px auto;
+            padding: 0 22px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 22px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 300px;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .job-card, .apply-card {
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            border: 1px solid #e5eaf3;
+            box-shadow: 0 5px 20px #00000008;
+        }
+
+        .job-card h2 {
+            font-size: 21px;
+            margin-top: 28px;
+        }
+
+        .company {
+            color: #64748b;
+            font-size: 17px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1d4ed8;
+            padding: 8px 13px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .info-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 13px;
+            border-radius: 9px;
+            flex: 1;
+            min-width: 145px;
+        }
+
+        .info-item small {
+            display: block;
+            color: #64748b;
+            margin-bottom: 7px;
+        }
+
+        .info-item strong {
+            overflow-wrap: anywhere;
+        }
+
+        .content {
+            color: #475569;
+            line-height: 1.9;
+            overflow-wrap: anywhere;
+        }
+
+        .apply-card {
+            position: sticky;
+            top: 20px;
+        }
+
+        .apply-card h3 {
+            margin-top: 0;
+        }
+
+        .apply-card p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        .apply-btn {
+            display: block;
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .apply-btn:hover {
+            background: #1d4ed8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 28px 15px;
+            background: #102044;
+            color: #dbeafe;
+            margin-top: 45px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 750px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 29px;
+            }
+
+            .hero, header {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            .apply-card {
+                position: static;
+            }
+
+            .job-card, .apply-card {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="/" class="logo">SmartJobs.</a>
+        <nav>
+            <a href="/">Home</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <span class="badge">JOB OPPORTUNITY</span>
+        <h1>{{ job.title }}</h1>
+        <p>{{ job.company }} · 📍 {{ job.location }}</p>
+    </section>
+
+    <main>
+        <a class="back" href="/">← Back to Jobs</a>
+
+        <div class="layout">
+
+            <section class="job-card">
+
+                <h2 style="margin-top: 0;">Job Overview</h2>
+
+                <p class="company">{{ job.company }}</p>
+
+                <div class="info">
+                    <div class="info-item">
+                        <small>📍 Location</small>
+                        <strong>{{ job.location }}</strong>
+                    </div>
+
+                    <div class="info-item">
+                        <small>💰 Salary</small>
+                        <strong>{{ job.salary|default:"Not specified" }}</strong>
+                    </div>
+                </div>
+
+                <hr style="border: 0; border-top: 1px solid #e2e8f0;">
+
+                <h2>Job Description</h2>
+                <div class="content">
+                    {{ job.description|linebreaksbr }}
+                </div>
+
+                <h2>Requirements</h2>
+                <div class="content">
+                    {{ job.requirements|linebreaksbr }}
+                </div>
+
+            </section>
+
+            <aside class="apply-card">
+                <h3>Interested in this job?</h3>
+
+                <p>
+                    Take the next step in your career.
+                    Submit your application to apply for this opportunity.
+                </p>
+
+                <div class="info-item">
+                    <small>Position</small>
+                    <strong>{{ job.title }}</strong>
+                </div>
+
+                <a href="{% url 'apply_job' job.id %}" class="apply-btn">
+                    Apply Now →
+                </a>
+
+                <p style="font-size: 13px;">
+                    Make sure your contact details are correct before submitting.
+                </p>
+            </aside>
+
+        </div>
+    </main>
+
+    <footer>
+        <strong>SmartJobs.</strong>
+        <br>
+        Connecting talent with opportunity.
+        <br>
+        © 2026 SmartJobs | Built with Python and Django
+    </footer>
+
+</body>
+</html>

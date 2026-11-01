@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Apply for {{ job.title }} | SmartJobs</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fc;
+            color: #172033;
+        }
+
+        header {
+            background: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 12px #0000000a;
+        }
+
+        .logo {
+            color: #2563eb;
+            font-size: 27px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        header nav a {
+            color: #334155;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero {
+            background: linear-gradient(120deg, #102044, #2563eb);
+            color: white;
+            padding: 35px 8%;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin: 0 0 12px;
+        }
+
+        .hero p {
+            color: #dbeafe;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .form-card {
+            background: white;
+            border: 1px solid #e5eaf3;
+            border-radius: 15px;
+            padding: 32px;
+            box-shadow: 0 8px 30px #00000008;
+        }
+
+        .form-card h2 {
+            margin-top: 0;
+            font-size: 23px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .field {
+            margin-bottom: 21px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 9px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 15px;
+            background: #fff;
+            color: #172033;
+        }
+
+        input:focus, textarea:focus {
+            outline: 2px solid #bfdbfe;
+            border-color: #2563eb;
+        }
+
+        input[type="file"] {
+            background: #f8fafc;
+            padding: 12px;
+        }
+
+        .hint {
+            display: block;
+            color: #64748b;
+            font-size: 12px;
+            margin-top: 7px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 130px;
+            line-height: 1.6;
+        }
+
+        .required {
+            color: #dc2626;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 9px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .note {
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.7;
+            margin-top: 18px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 28px 15px;
+            background: #102044;
+            color: #dbeafe;
+            margin-top: 45px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 18px 5%;
+            }
+
+            .hero {
+                padding: 30px 5%;
+            }
+
+            .hero h1 {
+                font-size: 27px;
+            }
+
+            .form-card {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="/" class="logo">SmartJobs.</a>
+
+        <nav>
+            <a href="/">Home</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Apply for This Position</h1>
+        <p>
+            {{ job.title }} at {{ job.company }}
+            <br>
+            📍 {{ job.location }}
+        </p>
+    </section>
+
+    <main>
+        <a class="back" href="{% url 'job_detail' job.id %}">
+            ← Back to Job Details
+        </a>
+
+        <section class="form-card">
+            <h2>Application Form</h2>
+
+            <p class="subtitle">
+                Please provide your details below to submit your application.
+                Fields marked with * are required.
+            </p>
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="field">
+                    <label for="applicant_name">
+                        Full Name <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="applicant_name"
+                        name="applicant_name"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="email">
+                        Email Address <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="phone">
+                        Phone Number <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="Enter your phone number"
+                        autocomplete="tel"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="resume">Upload Resume</label>
+
+                    <input
+                        type="file"
+                        id="resume"
+                        name="resume"
+                        accept=".pdf,application/pdf"
+                    >
+
+                    <span class="hint">
+                        PDF format recommended. Please upload your latest resume.
+                    </span>
+                </div>
+
+                <div class="field">
+                    <label for="cover_letter">Cover Letter</label>
+
+                    <textarea
+                        id="cover_letter"
+                        name="cover_letter"
+                        placeholder="Tell the employer why you are suitable for this role..."
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    Submit Application →
+                </button>
+
+                <p class="note">
+                    Please check your information before submitting.
+                    Your application will be recorded in the portal.
+                </p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <strong>SmartJobs.</strong>
+        <br>
+        Connecting talent with opportunity.
+        <br>
+        © 2026 SmartJobs | Built with Python and Django
+    </footer>
+
+</body>
+</html>

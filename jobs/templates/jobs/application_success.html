@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Application Successful | SmartJobs</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fc;
+            color: #172033;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: white;
+            padding: 20px 8%;
+            box-shadow: 0 2px 12px #0000000a;
+        }
+
+        .logo {
+            color: #2563eb;
+            font-size: 27px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 45px 20px;
+        }
+
+        .success-card {
+            background: white;
+            width: 100%;
+            max-width: 600px;
+            padding: 45px 35px;
+            text-align: center;
+            border: 1px solid #e5eaf3;
+            border-radius: 18px;
+            box-shadow: 0 10px 35px #00000008;
+        }
+
+        .success-icon {
+            width: 85px;
+            height: 85px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            background: #dcfce7;
+            color: #15803d;
+            font-size: 45px;
+            font-weight: bold;
+        }
+
+        h1 {
+            color: #15803d;
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .message {
+            color: #64748b;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .job-info {
+            margin: 28px 0;
+            padding: 20px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+        }
+
+        .job-info h2 {
+            font-size: 21px;
+            margin: 0 0 10px;
+            color: #1d4ed8;
+        }
+
+        .job-info p {
+            margin: 7px 0;
+            color: #475569;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 25px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 9px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            background: #102044;
+            color: #dbeafe;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 500px) {
+            header {
+                padding: 18px 5%;
+            }
+
+            .success-card {
+                padding: 35px 20px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="/" class="logo">SmartJobs.</a>
+    </header>
+
+    <main>
+        <section class="success-card">
+
+            <div class="success-icon">✓</div>
+
+            <h1>Application Submitted!</h1>
+
+            <p class="message">
+                Congratulations! Your application has been submitted successfully.
+                Thank you for applying through SmartJobs.
+            </p>
+
+            <div class="job-info">
+                <h2>{{ job.title }}</h2>
+                <p>🏢 {{ job.company }}</p>
+                <p>📍 {{ job.location }}</p>
+            </div>
+
+            <p class="message">
+                Your application has been recorded.
+                Best of luck with your job search!
+            </p>
+
+            <a href="/" class="btn">← Back to Jobs</a>
+
+        </section>
+    </main>
+
+    <footer>
+        <strong>SmartJobs.</strong>
+        <br>
+        Connecting talent with opportunity.
+        <br>
+        © 2026 SmartJobs | Built with Python and Django
+    </footer>
+
+</body>
+</html>
